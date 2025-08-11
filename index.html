@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計數程式</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>計數程式</h1>
+        <div class="settings">
+            <label for="limit">計數上限：</label>
+            <input type="number" id="limit" min="1" value="100">
+            <button id="saveLimit">儲存計數上限</button>
+            <button id="saveFields">儲存欄位定義</button>
+            <button id="openDefinitionModal">數字定義模組</button>
+            <div class="total-counter">
+                <span>目前累計：</span>
+                <span id="totalCount">0</span>
+            </div>
+        </div>
+
+        <!-- 數字定義模組的側邊抽屜 -->
+        <div id="definitionModal" class="drawer-modal">
+            <div class="drawer-backdrop"></div>
+            <div class="drawer-content">
+                <div class="drawer-header">
+                    <h2>數字定義模組</h2>
+                    <button class="close-definition" aria-label="關閉">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="drawer-body">
+                    <div class="module-section">
+                        <div class="module-input">
+                            <input type="text" id="moduleName" placeholder="輸入模組名稱" class="modern-input">
+                            <button id="saveModule" class="primary-button">
+                                <svg viewBox="0 0 24 24" width="16" height="16" class="icon">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                </svg>
+                                儲存新模組
+                            </button>
+                        </div>
+                    </div>
+                    <div class="module-section">
+                        <h3>已儲存模組</h3>
+                        <div class="module-list">
+                            <select id="moduleSelect" size="6" class="modern-select">
+                                <option value="">選擇已儲存的模組</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="module-actions">
+                        <button id="loadModule" class="action-button load">
+                            <svg viewBox="0 0 24 24" width="16" height="16" class="icon">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            載入模組
+                        </button>
+                        <button id="deleteModule" class="action-button delete">
+                            <svg viewBox="0 0 24 24" width="16" height="16" class="icon">
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                            </svg>
+                            刪除模組
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SID或PID 欄位 -->
+        <div class="sid-section">
+            <div class="sid-container">
+                <label for="sidInput">SID或PID：</label>
+                <input type="text" id="sidInput" class="sid-input" placeholder="請輸入或掃描 SID或PID" maxlength="10">
+                <button id="clearSid" class="clear-sid-btn">清除</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="counters">
+            <!-- 第一行：7 8 9 -->
+            <div class="counter" data-key="7">
+                <label for="field7">數字7：</label>
+                <input type="text" id="field7" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="8">
+                <label for="field8">數字8：</label>
+                <input type="text" id="field8" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="9">
+                <label for="field9">數字9：</label>
+                <input type="text" id="field9" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <!-- 第二行：4 5 6 -->
+            <div class="counter" data-key="4">
+                <label for="field4">數字4：</label>
+                <input type="text" id="field4" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="5">
+                <label for="field5">數字5：</label>
+                <input type="text" id="field5" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="6">
+                <label for="field6">數字6：</label>
+                <input type="text" id="field6" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <!-- 第三行：1 2 3 -->
+            <div class="counter" data-key="1">
+                <label for="field1">數字1：</label>
+                <input type="text" id="field1" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="2">
+                <label for="field2">數字2：</label>
+                <input type="text" id="field2" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="3">
+                <label for="field3">數字3：</label>
+                <input type="text" id="field3" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <!-- 第四行：0 . -->
+            <div class="counter" data-key="0">
+                <div class="counter-header">
+                    <label for="field0">數字0：</label>
+                    <div class="include-total">
+                        <input type="checkbox" id="exclude0" class="exclude-from-total">
+                        <label for="exclude0">不計入總數</label>
+                    </div>
+                </div>
+                <input type="text" id="field0" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="dot">
+                <div class="counter-header">
+                    <label for="fieldDot">點號：</label>
+                    <div class="include-total">
+                        <input type="checkbox" id="excludeDot" class="exclude-from-total" checked>
+                        <label for="excludeDot">不計入總數</label>
+                    </div>
+                </div>
+                <input type="text" id="fieldDot" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+        </div>
+            <div class="summary-container">
+                <div class="summary" id="summary">
+                    <h2>計數結論</h2>
+                    <div class="summary-content"></div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <button id="reset">清空欄位</button>
+            <button id="showSummary">顯示結論</button>
+            <div class="version-number">【Ver_2050811】</div>
+        </div>
+    </div>
+    <audio id="alertSound" preload="auto">
+        <source src="new-alert.mp3" type="audio/mpeg">
+        <!-- 如果瀏覽器不支援 MP3，可以提供備選格式 -->
+        <source src="new-alert.wav" type="audio/wav">
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>

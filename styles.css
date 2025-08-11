@@ -1,0 +1,490 @@
+body {
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px 40px 20px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+/* 抽屜式模態視窗 */
+.drawer-modal {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.drawer-modal.active {
+    visibility: visible;
+}
+
+.drawer-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.drawer-modal.active .drawer-backdrop {
+    opacity: 1;
+}
+
+.drawer-content {
+    position: relative;
+    width: 400px;
+    height: 100%;
+    background: #fff;
+    padding: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer-modal.active .drawer-content {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.drawer-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #2c3e50;
+}
+
+.close-definition {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.close-definition:hover {
+    color: #343a40;
+}
+
+.drawer-body {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.module-section {
+    margin-bottom: 24px;
+}
+
+.module-section h3 {
+    margin: 0 0 12px 0;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.module-input {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.modern-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.modern-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.modern-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.module-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.action-button.load {
+    background-color: #28a745;
+}
+
+.action-button.load:hover {
+    background-color: #218838;
+}
+
+.action-button.delete {
+    background-color: #dc3545;
+}
+
+.action-button.delete:hover {
+    background-color: #c82333;
+}
+
+.primary-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.primary-button:hover {
+    background-color: #0056b3;
+}
+
+.icon {
+    fill: currentColor;
+}
+
+.settings {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.total-counter {
+    margin-left: auto;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.main-content {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-start;
+    margin: 0 auto;
+    max-width: 980px;
+}
+
+/* SID或PID 欄位樣式 */
+.sid-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.sid-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 2px solid #4CAF50;
+}
+
+.sid-container label {
+    font-weight: bold;
+    color: #2E7D32;
+    font-size: 16px;
+    min-width: 50px;
+}
+
+.sid-input {
+    width: 200px;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.sid-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.25);
+}
+
+.clear-sid-btn {
+    padding: 8px 16px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+    font-size: 14px;
+}
+
+.clear-sid-btn:hover {
+    background: #d32f2f;
+}
+
+.counters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    flex: 2;
+    width: 500px;
+    grid-template-areas: 
+        "seven eight nine"
+        "four five six"
+        "one two three"
+        "zero dot .";
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.summary-container {
+    width: 280px;
+    padding-left: 20px;
+    margin-right: 20px;
+    border-left: 1px solid #ddd;
+}
+
+.counter[data-key="7"] { grid-area: seven; }
+.counter[data-key="8"] { grid-area: eight; }
+.counter[data-key="9"] { grid-area: nine; }
+.counter[data-key="4"] { grid-area: four; }
+.counter[data-key="5"] { grid-area: five; }
+.counter[data-key="6"] { grid-area: six; }
+.counter[data-key="1"] { grid-area: one; }
+.counter[data-key="2"] { grid-area: two; }
+.counter[data-key="3"] { grid-area: three; }
+.counter[data-key="0"] { grid-area: zero; }
+.counter[data-key="dot"] { grid-area: dot; }
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.counter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.include-total {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+}
+
+.include-total input[type="checkbox"] {
+    margin: 0;
+}
+
+.field-name {
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    background-color: #E8F5E9;
+    font-weight: bold;
+    color: #2E7D32;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.count {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px 0;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.counter-buttons {
+    display: flex;
+    gap: 5px;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.decrement {
+    padding: 5px;
+    background: #ffb3b3;
+    color: #b30000;
+    border: 1px solid #ff8080;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.decrement:hover {
+    background: #ff9999;
+}
+
+.increment {
+    padding: 5px;
+    background: #b3e0ff;
+    color: #0066cc;
+    border: 1px solid #80c1ff;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.increment:hover {
+    background: #99d6ff;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+    width: 100%;
+    position: relative; /* 添加相對定位 */
+}
+
+.actions button {
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.actions button:hover {
+    background: #218838;
+}
+
+/* 確保所有輸入框和按鈕都使用微軟正黑體 */
+input, button, select, textarea {
+    font-family: inherit;
+}
+
+/* 結論區域樣式 */
+.summary {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: none;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.summary h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.counter {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.summary h2 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.summary-content {
+    line-height: 1.6;
+    color: #444;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.summary-item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+.summary-total {
+    font-weight: bold;
+    color: #2E7D32;
+    font-size: 1.1em;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+}
+
+/* 版本號樣式 */
+.version-number {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #777;
+    font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+    margin-right: 20px;
+}
