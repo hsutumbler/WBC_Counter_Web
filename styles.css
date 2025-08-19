@@ -200,11 +200,22 @@ h1 {
     font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
 }
 
+.total-counter-container {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .total-counter {
-    margin-left: auto;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
+    background-color: #f0f8ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #4169e1;
+    display: inline-block;
 }
 
 .main-content {
@@ -217,11 +228,12 @@ h1 {
 }
 
 /* SID或PID 欄位樣式 */
-.sid-section {
+.sid-total-section {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .sid-container {
@@ -233,6 +245,7 @@ h1 {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     border: 2px solid #4CAF50;
+    margin: 0 auto;
 }
 
 .sid-container label {
@@ -284,7 +297,7 @@ h1 {
         "seven eight nine"
         "four five six"
         "one two three"
-        "zero dot .";
+        "zero dot plus";
     font-family: "Microsoft JhengHei", "Microsoft JhengHei UI", Arial, sans-serif;
 }
 
@@ -306,6 +319,7 @@ h1 {
 .counter[data-key="3"] { grid-area: three; }
 .counter[data-key="0"] { grid-area: zero; }
 .counter[data-key="dot"] { grid-area: dot; }
+.counter[data-key="plus"] { grid-area: plus; }
 
 .counter {
     display: flex;

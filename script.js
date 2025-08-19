@@ -240,8 +240,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.activeElement === sidInput) return;
 
         const key = e.key;
-        if ((key >= '0' && key <= '9') || key === '.') {
-            const dataKey = key === '.' ? 'dot' : key;
+        if ((key >= '0' && key <= '9') || key === '.' || key === '+') {
+            let dataKey;
+            if (key === '.') {
+                dataKey = 'dot';
+            } else if (key === '+') {
+                dataKey = 'plus';
+            } else {
+                dataKey = key;
+            }
             const counter = document.querySelector(`.counter[data-key="${dataKey}"]`);
             if (counter) {
                 incrementCounter(counter);
@@ -373,8 +380,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let includedTotal = 0;
         let items = [];
         
-        // 定義排序順序：數字1-9、數字0、點號
-        const sortOrder = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'dot'];
+        // 定義排序順序：數字1-9、數字0、點號、加號
+        const sortOrder = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'dot', 'plus'];
         
         // 按照指定順序收集項目
         sortOrder.forEach(key => {

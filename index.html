@@ -10,17 +10,13 @@
     <div class="container">
         <h1>計數程式</h1>
         <div class="settings">
-            <label for="limit">計數上限：</label>
+            <label for="limit">&nbsp;&nbsp;計數上限：</label>
             <input type="number" id="limit" min="1" value="100">
             <button id="saveLimit">儲存計數上限</button>
             <button id="saveFields">儲存欄位定義</button>
             <button id="openDefinitionModal">數字定義模組</button>
-            <div class="total-counter">
-                <span>目前累計：</span>
-                <span id="totalCount">0</span>
-            </div>
         </div>
-
+        
         <!-- 數字定義模組的側邊抽屜 -->
         <div id="definitionModal" class="drawer-modal">
             <div class="drawer-backdrop"></div>
@@ -70,8 +66,17 @@
                 </div>
             </div>
         </div>
-        <!-- SID或PID 欄位 -->
-        <div class="sid-section">
+        <!-- SID或PID 和目前累計區域 -->
+        <div class="sid-total-section">
+            <!-- 目前累計顯示 -->
+            <div class="total-counter-container">
+                <div class="total-counter">
+                    <span>目前累計：</span>
+                    <span id="totalCount">0</span>
+                </div>
+            </div>
+            
+            <!-- SID或PID 欄位 -->
             <div class="sid-container">
                 <label for="sidInput">SID或PID：</label>
                 <input type="text" id="sidInput" class="sid-input" placeholder="請輸入或掃描 SID或PID" maxlength="10">
@@ -164,7 +169,7 @@
                     <button class="increment">+</button>
                 </div>
             </div>
-            <!-- 第四行：0 . -->
+            <!-- 第四行：0 . + -->
             <div class="counter" data-key="0">
                 <div class="counter-header">
                     <label for="field0">數字0：</label>
@@ -182,13 +187,28 @@
             </div>
             <div class="counter" data-key="dot">
                 <div class="counter-header">
-                    <label for="fieldDot">點號：</label>
+                    <label for="fieldDot">點號( . )：</label>
                     <div class="include-total">
                         <input type="checkbox" id="excludeDot" class="exclude-from-total" checked>
                         <label for="excludeDot">不計入總數</label>
                     </div>
                 </div>
                 <input type="text" id="fieldDot" class="field-name" placeholder="輸入定義">
+                <div class="count">0</div>
+                <div class="counter-buttons">
+                    <button class="decrement">-</button>
+                    <button class="increment">+</button>
+                </div>
+            </div>
+            <div class="counter" data-key="plus">
+                <div class="counter-header">
+                    <label for="fieldPlus">加號(+)：</label>
+                    <div class="include-total">
+                        <input type="checkbox" id="excludePlus" class="exclude-from-total">
+                        <label for="excludePlus">不計入總數</label>
+                    </div>
+                </div>
+                <input type="text" id="fieldPlus" class="field-name" placeholder="輸入定義">
                 <div class="count">0</div>
                 <div class="counter-buttons">
                     <button class="decrement">-</button>
